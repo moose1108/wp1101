@@ -1,0 +1,67 @@
+*{
+    background-color: lightblue;
+    /*background:linear-gradient(rgb(151, 226, 240), rgb(85, 214, 186), rgb(99, 122, 111));*/
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin: 5px 5px;
+}
+h1{
+    text-align: center;
+    font-size: 105px;
+    font-weight: 1000;
+    margin: 0;
+    background: url("https://live.staticflickr.com/4138/4945024148_a3bbd5f89e_b.jpg") 50% 50%;
+    background-size: cover;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    cursor: default;
+}
+h1:hover{
+    background: url("https://i1.lsbkw.com/c0691a3b/c368193c/9a304d3f595c33cd7e270b.png") 50% 50%;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+h2{
+    font-size: 40px;
+}
+.images{
+    margin: 80px auto 50px;
+    opacity: 1.1;
+    cursor: pointer;
+}
+.list{
+    text-align: center;
+}
+.list :hover{
+    color: darkred;
+}
+.place{
+    display: inline-block;
+    margin: 8px 8px;
+    font-size: 15px;
+    font-weight: 900;
+    
+}
+.images :hover{
+    transform:scale(1.25,1.25);
+    box-shadow: 4px 3px 3px lightslategray;
+    transition: all 0.5s ease out;
+}
+.pic{
+    width: 279px;
+    height: 186px;
+}
+
+@media (max-width:950px){
+    h2{
+        text-align: center;
+        font-size: 25px;
+    }
+    .images{
+        text-align: center;
+    }
+    h1{
+        font-size: 60px;
+    }
+}
