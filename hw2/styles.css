@@ -1,0 +1,116 @@
+*{
+    background-color: rgb(239, 243, 245);
+    /*background:linear-gradient(rgb(151, 226, 240), rgb(85, 214, 186), rgb(99, 122, 111));*/
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin: 2px 2px;
+}
+.wrapper{
+    margin: 100px;
+    max-width: 1100px;
+}
+
+.list{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.place{
+    padding: 7px 25px;
+    font-size: 15px;
+    font-weight: 900;
+    color: blue;
+    border: 2px solid #007bff;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.active, .place:hover{
+    color:#fff;
+    background-color: #007bff;
+}
+h1{
+    text-align: center;
+    font-size: 105px;
+    font-weight: 1000;
+    margin: 0;
+    background: url("https://live.staticflickr.com/4138/4945024148_a3bbd5f89e_b.jpg") 50% 50%;
+    background-size: cover;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    cursor: default;
+}
+h1:hover{
+    background: url("https://i1.lsbkw.com/c0691a3b/c368193c/9a304d3f595c33cd7e270b.png") 50% 50%;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+.wrap{
+    
+    display: flex;
+    justify-content: space-between;
+}
+.pict{
+    width: 29%;
+    height: 30%;
+    margin: 2% 2% 2% 2%;
+    text-align: center;
+    cursor: pointer;
+    float: left;
+    display: inline;
+    object-fit: cover;
+}
+.pict:hover{
+    transform: scale(1.15);
+    transition: all 0.4s ease;
+}
+.big_pic{
+    height: 400px;
+    width: 600px;
+}
+.pic.hide{
+    display: none;
+}
+.pic.show{
+    display: block;
+}
+#leftside{
+    display: flex;
+    flex-wrap: wrap;
+    width: 50vw;
+    height: 33vw;
+    overflow-y :auto;
+    background-color: rgb(239, 243, 245);
+}
+#rightside{
+    width: 50vw;
+    height: 33vw;
+}
+@media (max-width:950px){
+    h2{
+        text-align: center;
+        font-size: 25px;
+    }
+    h1{
+        font-size: 60px;
+    }
+    .big_pic{
+        
+        height: 28vw;
+    }
+}
+
+
+
+
+  .smallImg {
+    width: 46%;
+    height: auto;
+    margin: 2% 2% 2% 2%;
+    transition: all 1.5s ease;
+    cursor: pointer;
+    
+  }
+  
+  
