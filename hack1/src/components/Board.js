@@ -21,7 +21,7 @@ const Board = ({ boardSize, mineNum, backToHome }) => {
     const [mineLocations, setMineLocations] = useState([]);     // An array to store all the coordinate of '💣'.
     const [gameOver, setGameOver] = useState(false);            // A boolean variable. If true, means you lose the game (Game over).
     const [remainFlagNum, setRemainFlagNum] = useState(0);      // An integer variable to store the number of remain flags.
-    const [win, setWin] = useState(false);                      // A boolean variable. If true, means that you win the game.
+    const [win, setWin] = useState(true);                      // A boolean variable. If true, means that you win the game.
 
     useEffect(() => {
         // Calling the function
