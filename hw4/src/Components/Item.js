@@ -11,8 +11,8 @@ const Item = ({message, index, deleteTodos}) => {
 
     return(
         <li className="todo-app__item">
-            <div className="todo-app__checkbox" id="box">
-                <input id={index} type="checkbox"/>
+            <div className="todo-app__checkbox"  id="box">
+                <input id={index} type="checkbox" defaultChecked={false}/>
                 <label htmlFor={index}></label>
             </div>
             <h1 className="todo-app__item-detail">{message}</h1>

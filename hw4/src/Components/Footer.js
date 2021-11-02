@@ -2,9 +2,8 @@ import React, {Component} from "react";
 
 const Footer = ({Todos}) => {
     const total = Todos.length;
-    console.log(total);
     return(
-        <footer className="todo-app__footer" id="todo-footer">
+        <footer id="footer" className="todo-app__footer" id="todo-footer">
             <div className="todo-app__total">
                 {total} tasks
             </div>
