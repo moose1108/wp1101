@@ -30,11 +30,7 @@ body {
     grid-area: keys-numbers;
     direction: rtl;
   }
-  
-  .keys-numbers .key-zero {
-    width: 4.2rem;
-    text-align: left;
-  }
+
   .keys-operators {
     grid-area: keys-operators;
   }
@@ -43,7 +39,7 @@ body {
   }
   .calculator-keypad {
     padding-top: 0.3rem;
-    background-color: rgb(137, 217, 243);
+    background-color: rgb(109, 208, 241);
     display: grid;
     grid-template-columns: repeat(4, 5rem);
     grid-template-rows: repeat(5, 5rem);
@@ -70,4 +66,13 @@ body {
     font-size: 150%;
     border-radius: 0.8rem;
     box-shadow: 0.1rem 0.1rem 0.1rem 0.1rem grey;
+  }
+  .memory {
+      font-family:Verdana, Geneva, Tahoma, sans-serif;
+      font-size: larger;
+      font-style: oblique;
+      margin: 5em;
+  }
+  .memory p {
+      margin: 3em;
   }
