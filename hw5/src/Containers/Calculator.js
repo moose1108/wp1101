@@ -66,6 +66,8 @@ const Calculator = () => {
         if (calc === '' || operators.includes(calc.slice(-1)))
             return;
         setCalc(memory);
+        if (memory === '0')
+            setCalc("");
     }
     const resetmemory = () => { // MC
         if (calc === '' || operators.includes(calc.slice(-1)))
