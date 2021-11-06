@@ -10,8 +10,6 @@ const Calculator = () => {
         if (calc === '' && (operators.includes(value)) || 
             (operators.includes(calc.slice(-1)) && (operators.includes(value)))) // wrong input type
             return;
-        if (value === '0' && operators.includes(calc.slice(-1))) // input 0 when empty
-            return;
         if (value === '\xB1'){ // distance from 0
             if (calc === '' || calc === '0' || operators.includes(calc.slice(-1)))
                 return;
@@ -26,6 +24,8 @@ const Calculator = () => {
                 return;
             }
         }
+        if (value === '.' && calc.includes('.'))
+            return;
         if (value === '='){ // equal
             for (let i = 0; i < calc.length; i++){
                 if (exception.includes(calc.slice(0, i))){ // error calculation
@@ -34,12 +34,11 @@ const Calculator = () => {
                 }
             }
             setCalc(eval(calc).toString()); // get the calculation
-            if (eval(calc).toString() == '0') // reset to zero when euqal to 0
+            if (eval(calc).toString() === '0') // reset to zero when euqal to 0
                 setCalc("");
         }
         else{ // add input
             setCalc(calc + value);
-            console.log(calc);
             if (calc.slice(-1) === '/' && value === '0') // divide 0
                 setCalc("error");
         }
