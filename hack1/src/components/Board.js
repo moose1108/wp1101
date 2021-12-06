@@ -32,12 +32,19 @@ const Board = ({ boardSize, mineNum, backToHome }) => {
     const freshBoard = () => {
         {/* -- TODO 3-1 -- */}
         {/* Useful Hint: createBoard(...) */}
+        const newBoard = createBoard(boardSize, mineNum);
+        setNonMineCount(boardSize * boardSize - mineNum);
+        setRemainFlagNum(mineNum);
+        setMineLocations(newBoard.mineLocations);
+        setBoard(newBoard.board);
     }
 
     const restartGame = () => {
         {/* -- TODO 5-2 -- */}
         {/* Useful Hint: freshBoard() */}
-        
+        freshBoard();
+        setGameOver(false);
+        setWin(false);
     }
 
     // On Right Click / Flag Cell
@@ -49,7 +56,19 @@ const Board = ({ boardSize, mineNum, backToHome }) => {
         {/* Useful Hint: A cell is going to be flagged. 'x' and 'y' are the xy-coordinate of the cell. */}
         {/* Reminder: If the cell is already flagged, you should unflagged it. Also remember to update the board and the remainFlagNum. */}
         {/* Reminder: The cell can be flagged only when it is not revealed. */}
-        
+        let newBoard = JSON.parse(JSON.stringify(board));
+        let newFlagNum = remainFlagNum;
+        if(newBoard[x][y].revealed === true) return;
+        if(newBoard[x][y].flagged !== true &&  newBoard[x][y].revealed !== true){
+            newBoard[x][y].flagged = true;
+            newFlagNum--;
+        }
+        else{
+            newBoard[x][y].flagged = false;
+            newFlagNum++;
+        }
+        setRemainFlagNum(newFlagNum);
+        setBoard(newBoard);
     };
 
     const revealCell = (x, y) => {
@@ -57,38 +76,61 @@ const Board = ({ boardSize, mineNum, backToHome }) => {
         {/* Reveal the cell */}
         {/* Useful Hint: The function in reveal.js may be useful. You should consider if the cell you want to reveal is a location of mines or not. */}
         {/* Reminder: Also remember to handle the condition that after you reveal this cell then you win the game. */}
+        if(board[x][y].revealed || gameOver || board[x][y].flagged) return;
         
+        let newBoard = JSON.parse(JSON.stringify(board));
+        // Hit the mine!!
+        if(newBoard[x][y].value === '💣'){
+            for(let i = 0; i < mineLocations.length; i++){
+                if(!newBoard[mineLocations[i][0]][mineLocations[i][1]].flagged)
+                    newBoard[mineLocations[i][0]][mineLocations[i][1]].revealed = true;
+            }
+            setBoard(newBoard);
+            setGameOver(true);
+        } 
+        // Reveal the number cell
+        else{
+            let newRevealedBoard = revealed(newBoard, x, y, nonMineCount);
+            setBoard(newRevealedBoard.board);
+            setNonMineCount(newRevealedBoard.newNonMinesCount);
+            if(newRevealedBoard.newNonMinesCount === 0){
+                console.log("win")
+                setGameOver(true);
+                setWin(true);
+            }
+        }
     };
-    if (win == false){
-        return(
-            <div className = 'boardPage' >
-                <div className = 'boardWrapper' >
-                    <div className = "boardContainer">
-                        <Dashboard/>
-                        <div id="row0" style = {{display: "flex"}}></div>
-                        <div id="row1" style = {{display: "flex"}}></div>
-                        <div id="row2" style = {{display: "flex"}}></div>
-                        <div id="row3" style = {{display: "flex"}}></div>
-                        <div id="row4" style = {{display: "flex"}}></div>
-                        <div id="row5" style = {{display: "flex"}}></div>
-                        <div id="row6" style = {{display: "flex"}}></div>
-                        <div id="row7" style = {{display: "flex"}}></div>
-                        <div id="row8" style = {{display: "flex"}}></div>
-                        <div id="row9" style = {{display: "flex"}}></div>
-                    </div>
-                
-                {/* -- TODO 3-1 -- */}
-                {/* Useful Hint: The board is composed of BOARDSIZE*BOARDSIZE of Cell (2-dimention). So, nested 'map' is needed to implement the board.  */}
-                {/* Reminder: Remember to use the component <Cell> and <Dashboard>. See Cell.js and Dashboard.js for detailed information. */}
-                    
+    return(
+        <div className = 'boardPage' >
+            <div className = 'boardWrapper' >
+            {/* <h1>This is the board Page!</h1>  This line of code is just for testing. Please delete it if you finish this function. */}
+            
+            {/* -- TODO 4-2 -- */}
+            {/* Useful Hint: The board is composed of BOARDSIZE*BOARDSIZE of Cell (2-dimention). So, nested 'map' is needed to implement the board.  */}
+            {/* Reminder: Remember to use the component <Cell> and <Dashboard>. See Cell.js and Dashboard.js for detailed information. */}
+            
+            
+            {gameOver && <Modal restartGame = {restartGame} backToHome = {backToHome} win= {win}/>}
+                <div className = 'boardContainer'>
+                    <Dashboard remainFlagNum = {remainFlagNum} gameOver = {gameOver}/>
+                    {
+                        board.map((singleRow, index1) => {
+                            const Id = 'row'+index1.toString() 
+                            return (
+                                <div style = {{display: "flex"}} key = {index1} id={Id}>
+                                    {singleRow.map((singleBlock, index2) => {
+                                        return (
+                                            <Cell rowIdx = {index1} colIdx = {index2} detail = {singleBlock} updateFlag = {updateFlag} revealCell = {revealCell} key = {index2}/>
+                                        );
+                                    })}
+                                </div>
+                            );
+                        })
+                    }
                 </div>
             </div>
-        ); 
-    }
-    else{
-        <Modal/>
-    }
-
+        </div>
+    ); 
 }
 
 export default Board

@@ -55,9 +55,28 @@ export default (boardSize, mineNum) => {
     {/* Reminder: Some cells in the board do not have "Top" position, some do not have "Top-Right" position .... */}
     {/* Warning: The value of any cell will not be bigger than 8 logically. */}
     {/* Testing: printBoard() */}
+    // Add Numbers
+    for(let r = 0; r < boardSize; r++){
+        for(let c = 0; c < boardSize; c++){
+            if (board[r][c].value === '💣') continue;
+            // Top
+            if (r > 0 && board[r - 1][c].value === '💣') board[r][c].value++;
+            // Top Right
+            if (r > 0 && c < boardSize - 1 && board[r - 1][c + 1].value === '💣') board[r][c].value++;
+            // Right
+            if (c < boardSize - 1 && board[r][c + 1].value === '💣') board[r][c].value++;
+            // Bottom Right
+            if (r < boardSize - 1 && c < boardSize - 1 && board[r + 1][c + 1].value === '💣') board[r][c].value++;
+            // Bottom
+            if (r < boardSize - 1 && board[r + 1][c].value === '💣') board[r][c].value++;
+            // Bottom Left
+            if (r < boardSize -1 && c > 0 && board[r + 1][c - 1].value === '💣') board[r][c].value++;
+            // Left
+            if (c > 0 && board[r][c - 1].value === '💣') board[r][c].value++;
+            // Top Left
+            if (r > 0 && c > 0 && board[r - 1][c -1].value === '💣') board[r][c].value++;
 
-    
-    printBoard();
-
+        }
+    }
     return { board, mineLocations };
 };
