@@ -9,10 +9,8 @@ function Board(props) {
   
   // TODO 2-(2): fetch all posts from database
   const getPosts = async () => {
-    const res = await instance.get('/allPosts');
-    if (res.data.message === "success"){
-      setPosts(...posts, ...res.data.message);
-    }
+    const { data : { message, data} } = await instance.get('/allPosts');
+    setPosts([...posts, ...message]);
   }
   useEffect(() => {
     getPosts();
