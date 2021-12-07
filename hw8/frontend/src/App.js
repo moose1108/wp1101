@@ -34,7 +34,8 @@ function App() {
       </div>
       <div className="App-messages">
         {messages.length === 0 ? 
-        (<p style={{ color: '#ccc' }}>No messages...</p>) :
+        (<p style={{ color: '#ccc' }}>No messages...</p>) 
+        :
         (messages.map(({name, body}, i) => 
         (<p className="App-message" key={i}><Tag color="blue">{name}</Tag>{body}</p>)))}
       </div>

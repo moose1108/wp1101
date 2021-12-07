@@ -4,7 +4,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv-defaults";
 import Message from "../backend/message.js";
-import { sendData, sendStatus } from "./wssConnect.js";
+import { initData, sendData, sendStatus } from "./wssConnect.js";
 
 dotenv.config();
 
@@ -18,9 +18,17 @@ const app = express();
 const server = http.createServer(app);
 const wss = new WebSocketServer({server});
 
+const broadcastMessage = (data, status) => {
+    wss.clients.forEach((client) => {
+        sendData(data, client);
+        sendStatus(status, client);
+    });
+};
+
 db.once('open', () => {
     wss.on('connection', (ws) =>{
         console.log("MangoDB connected!");
+        initData(ws);
         ws.onmessage = async (byteString) => {
             const { data } = byteString;
             const [task, payload] = JSON.parse(data);
@@ -34,24 +42,25 @@ db.once('open', () => {
                     catch(e){
                         throw new Error("Message db save error" + e);
                     }
-                    sendData(['output', [payload]], ws);
-                    sendStatus({type: 'success', msg: 'Message sent.'}, ws);
+                    broadcastMessage(["output", [payload]], {
+                        type: 'success', 
+                        msg: 'Message sent.'
+                    });
+                    //sendData(['output', [payload]], ws);
+                    //sendStatus({type: 'success', msg: 'Message sent.'}, ws);
                     break;
                 }
                 case 'clear': {
                     Message.deleteMany({}, () => {
-                        sendData(['cleared']);
-                        sendStatus({ type: 'info', msg: 'Message cache cleared.'});
+                        sendData(['cleared'], ws);
+                        sendStatus({ type: 'info', msg: 'Message cache cleared.'}, ws);
                     })
-                    console.log(2);
                     break;
                 }
                 default:
                     break;
             }
-            
         }
-        
     });
     const port = process.env.PORT || 4000
     server.listen(port, () => {
