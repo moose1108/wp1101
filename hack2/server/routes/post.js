@@ -7,11 +7,10 @@ const router = express.Router()
 router.get("/allPosts", async function(req, res){
     try{
         const Posts = await post.find().sort({timestamp: -1});
-        console.log(Posts);
         if (Posts.length) {
             res.status(200).send({
             "message": "success",
-            "data": [post]
+            "data": Posts
             })
         }
         else {
