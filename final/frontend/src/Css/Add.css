@@ -1,0 +1,41 @@
+.ant-tabs-ink-bar {
+    position: absolute;
+    background: #e40303 !important;
+    pointer-events: none;
+ }
+.ant-tabs-tab-btn{
+   font-size: 20px;
+ }
+ .ant-tabs-tab-btn:hover{
+   color: #971d1d !important;
+ }
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #e40303 !important; 
+    font-weight: 500;
+ }
+.ant-tabs-tabpane{
+   text-align: center;
+}
+.ant-btn:hover{
+   color: #971d1d !important;
+   border-color: #971d1d !important;
+}
+.ant-btn:focus{
+   color: #e40303 !important;
+   border-color: #e40303 !important;
+   
+}
+.ant-btn-primary{
+   border-color: #000000 !important;
+   background: #ffffff !important;
+   color: black !important;
+}
+.ant-input-affix-wrapper{
+   border: 1px solid #971d1d !important;
+}
+.ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner{
+   background: #971d1d !important;
+}
+.ant-picker-cell-in-view.ant-picker-cell-today .ant-picker-cell-inner:before{
+   border: 1px solid #971d1d !important;
+}

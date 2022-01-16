@@ -1,0 +1,28 @@
+{
+  "name": "wp1101_clowns_project",
+  "type": "module",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/moose1108/wp1101_clowns_project.git",
+  "author": "moose1108 <75203439+moose1108@users.noreply.github.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "cd frontend && yarn start",
+    "server": "cd backend && yarn server",
+    "build":"cd backend && yarn build"
+  },
+  "dependencies": {
+    "apexcharts": "^3.33.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "nodemon": "^2.0.15",
+    "react-apexcharts": "^1.3.9",
+    "react-router-dom": "^6.2.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.16.8",
+    "@babel/core": "^7.16.7",
+    "@babel/node": "^7.16.8",
+    "@babel/preset-env": "^7.16.8"
+  }
+}

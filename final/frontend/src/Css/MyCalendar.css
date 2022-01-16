@@ -1,0 +1,16 @@
+.ant-picker-calendar-full .ant-picker-panel .ant-picker-calendar-date-today {
+    border-color:#971d1d !important;
+}
+.ant-picker-calendar-full .ant-picker-panel .ant-picker-cell-selected .ant-picker-calendar-date, .ant-picker-calendar-full .ant-picker-panel .ant-picker-cell-selected .ant-picker-calendar-date-today{
+    background: rgb(253, 226, 226) !important;
+}
+.ant-picker-calendar-full .ant-picker-panel .ant-picker-cell-selected .ant-picker-calendar-date .ant-picker-calendar-date-value{
+    color: #971d1d !important;
+}
+.ant-radio-button-wrapper-checked{
+    color: #971d1d !important;
+    border-color: #971d1d  !important;
+}
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):before{
+    background-color: #971d1d !important;
+}
